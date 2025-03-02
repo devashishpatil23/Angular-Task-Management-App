@@ -1,0 +1,97 @@
+<app-create-task
+  (closeForm)="onCloseForm()"
+  (updatedTask)="fetchUpdatedTasks()"
+  *ngIf="showForm()"
+  [editTask]="editTask()"
+></app-create-task>
+
+<app-task-details
+  [task]="showTask()"
+  (closeDetialsView)="closeDetialsView()"
+  *ngIf="showDetailsView()"
+></app-task-details>
+<div
+  class="d-flex flex-column flex-lg-row shadow-sm px-3 py-2 justify-content-between align-items-center my-3"
+>
+  <h3>Dashboard</h3>
+  <div>
+    <button class="btn btn-primary m-1" (click)="onCreateTask()">
+      Create Task
+    </button>
+    <button (click)="clearAllTasks()" class="btn btn-danger m-1">
+      Clear All Tasks
+    </button>
+  </div>
+</div>
+
+<app-filter (filterApplied)="onFilterApplied($event)"></app-filter>
+
+<div class="mt-4 cards-wrapper position-relative">
+  <div *ngIf="isLoading()" class="spinner-wraper text-center">
+    <app-loader></app-loader>
+    <p>Loading!</p>
+  </div>
+
+  <div *ngIf="filteredTasks().length < 1 && !isLoading()" class="my-5">
+    <h3 class="text-muted ps-lg-5">No task found!</h3>
+  </div>
+
+  <div
+    class="d-flex flex-wrap shadow-sm justify-content-center justify-content-center justify-content-lg-start"
+  >
+    @for (task of filteredTasks(); track $index) {
+    <div
+      class="card mx-3 my-4 shadow-sm"
+      [ngClass]="'border-' + task.priority"
+      style="width: 18rem; border-radius: 12px"
+    >
+      <div class="card-body p-4">
+        <div class="task-title border-bottom mb-3 pb-2">
+          <h4 class="mb-0 text-primary">{{ task.title }}</h4>
+        </div>
+        <p class="mb-2 fw-semibold">
+          <span class="fw-semibold text-secondary">Created by:</span>
+          <span class="text-dark"> {{ task.createdBy }} </span>
+        </p>
+
+        <p class="mb-2 fw-semibold">
+          <span class="fw-semibold text-secondary">Assigned to:</span>
+          <span class="text-dark"> {{ task.assignedTo }} </span>
+        </p>
+        <p class="mb-2 fw-semibold">
+          <span class="text-secondary me-2">Priority:</span>
+          <span class="text-dark">{{ task.priority }}</span>
+        </p>
+        <p class="mb-3 fw-semibold">
+          <span class="fw-semibold text-secondary me-2">Status:</span>
+          <span class="text-dark">{{ task.status }}</span>
+        </p>
+
+        <div class="d-flex justify-content-end gap-2 mt-3">
+          <button
+            (click)="showTaskDetails(task)"
+            class="btn btn-primary btn-sm border"
+            title="Detail"
+          >
+            <i class="bi bi-info-circle text-white"></i>
+          </button>
+          <button
+            (click)="onEditTask(task)"
+            class="btn btn-success btn-sm border"
+            title="Edit"
+          >
+            <i class="bi bi-pencil-square text-white"></i>
+          </button>
+          <button
+            (click)="onDelteTask(task.id)"
+            class="btn btn-danger btn-sm border"
+            title="Delete"
+          >
+            <i class="bi bi-trash text-white"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

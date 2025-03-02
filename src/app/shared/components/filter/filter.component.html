@@ -1,0 +1,63 @@
+<div class="card p-3 border-0 shadow-sm mb-3">
+  <form [formGroup]="filterForm" id="filterForm">
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <div>
+        <h5 class="mb-0">Filter Tasks:</h5>
+      </div>
+
+      <div class="d-flex gap-2">
+        <div>
+          <select
+            formControlName="priority"
+            id="priorityFilter"
+            class="form-select"
+          >
+            <option value="" disabled selected>Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+        <div>
+          <select
+            formControlName="status"
+            id="statusFilter"
+            class="form-select"
+          >
+            <option value="" disabled selected>Status</option>
+            <option value="open">Open</option>
+            <option value="started">Started</option>
+            <option value="in-progress">In Progress</option>
+            <option value="complete">Complete</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button
+          [disabled]="
+            !filterForm.get('priority')?.value &&
+            !filterForm.get('status')?.value
+          "
+          type="button"
+          class="btn btn-primary"
+          (click)="onApplyFilter()"
+        >
+          Apply
+        </button>
+        <button
+          [disabled]="
+            !filterForm.get('priority')?.value &&
+            !filterForm.get('status')?.value
+          "
+          type="button"
+          class="btn btn-secondary"
+          (click)="onReset()"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+.card.border-low {
+  border-top: 5px solid rgb(255, 220, 67);
+}
+
+.card.border-medium {
+  border-top: 5px solid rgb(27, 183, 255);
+}
+
+.card.border-high {
+  border-top: 5px solid rgb(9, 186, 0);
+}
+
+.card.border-critical {
+  border-top: 5px solid rgb(255, 0, 0);
+}
+
+.spinner-wraper {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cards-wrapper {
+  min-height: 300px;
+}

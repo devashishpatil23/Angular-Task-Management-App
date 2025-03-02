@@ -1,0 +1,170 @@
+<div class="d-block modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card shadow">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <h3 class="mb-0">{{ editTask ? "Edit Task" : "Create Task" }}</h3>
+          <a (click)="oncloseForm()" class="btn-close" aria-label="Close"></a>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="taskForm" (ngSubmit)="onFormSubmit()">
+            <div class="form-group mb-3">
+              <label for="inputTitle">Title*</label>
+              <input
+                type="text"
+                id="inputTitle"
+                class="form-control"
+                placeholder="Enter task title"
+                formControlName="title"
+              />
+              <div
+                *ngIf="
+                  taskForm.get('title')?.invalid &&
+                  (taskForm.get('title')?.touched ||
+                    taskForm.get('title')?.dirty)
+                "
+                class="text-danger mt-1"
+              >
+                Title is required.
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="inputDescription">Description</label>
+              <textarea
+                id="inputDescription"
+                rows="4"
+                class="form-control"
+                placeholder="Enter description"
+                formControlName="description"
+              ></textarea>
+              <div
+                *ngIf="
+                  taskForm.get('description')?.invalid &&
+                  (taskForm.get('description')?.touched ||
+                    taskForm.get('description')?.dirty)
+                "
+                class="text-danger mt-1"
+              >
+                Description is required.
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="inputAssignedTo">Assigned To</label>
+                <input
+                  id="inputAssignedTo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter assignee name"
+                  formControlName="assignedTo"
+                />
+                <div
+                  *ngIf="
+                    taskForm.get('assignedTo')?.invalid &&
+                    (taskForm.get('assignedTo')?.touched ||
+                      taskForm.get('assignedTo')?.dirty)
+                  "
+                  class="text-danger mt-1"
+                >
+                  Assigned to is required.
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="inputCreatedAt">Created At</label>
+                <input
+                  id="inputCreatedAt"
+                  type="date"
+                  class="form-control"
+                  formControlName="createdAt"
+                />
+                <div
+                  *ngIf="
+                    taskForm.get('createdAt')?.invalid &&
+                    (taskForm.get('createdAt')?.touched ||
+                      taskForm.get('createdAt')?.dirty)
+                  "
+                  class="text-danger mt-1"
+                >
+                  Creation date is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="inputPriority">Priority</label>
+                <select
+                  id="inputPriority"
+                  class="form-select"
+                  formControlName="priority"
+                >
+                  <option value="" disabled selected>Priority</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="critical">Critical</option>
+                </select>
+                <div
+                  *ngIf="
+                    taskForm.get('priority')?.invalid &&
+                    (taskForm.get('priority')?.touched ||
+                      taskForm.get('priority')?.dirty)
+                  "
+                  class="text-danger mt-1"
+                >
+                  Priority is required.
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="inputStatus">Status</label>
+                <select
+                  id="inputStatus"
+                  class="form-select"
+                  formControlName="status"
+                >
+                  <option value="" disabled selected>Status</option>
+                  <option value="open">Open</option>
+                  <option value="started">Started</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="complete">Complete</option>
+                </select>
+                <div
+                  *ngIf="
+                    taskForm.get('status')?.invalid &&
+                    (taskForm.get('status')?.touched ||
+                      taskForm.get('status')?.dirty)
+                  "
+                  class="text-danger mt-1"
+                >
+                  Status is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end save-btn">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="taskForm.invalid || isLoading()"
+              >
+                <app-loader
+                  *ngIf="isLoading()"
+                  [color]="'white'"
+                  [size]="' size-sm'"
+                ></app-loader>
+                {{ editTask ? "Update Task" : "Add Task" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
