@@ -5,7 +5,8 @@ import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { User } from '../../model/User';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
-
+import * as CryptoJS from 'crypto-js';
+import { Constant } from '../../constant';
 @Injectable({
   providedIn: 'root',
 })
@@ -61,12 +62,14 @@ export class AuthService {
   }
 
   autoLogin() {
-    const userData = localStorage.getItem('user');
+    const encryptedUserData = localStorage.getItem('user');
 
-    if (!userData) {
-      return;
-    }
-    const user = JSON.parse(userData);
+    if (!encryptedUserData) return;
+
+    const decrytedData = this.decryptData(encryptedUserData);
+    if (!decrytedData) return;
+
+    const user = JSON.parse(decrytedData);
     const loggedUser = new User(
       user.email,
       user.id,
@@ -88,8 +91,18 @@ export class AuthService {
     // Convert the timestamp into a Date object
     const expires = new Date(expiresInTs);
     const user = new User(res.email, res.localId, res.idToken, expires);
+    const encryptUser = this.encryptData(JSON.stringify(user));
     this.autoLogout(Number(res.expiresIn) * 1000);
     this.user.next(user);
-    localStorage.setItem('user', JSON.stringify(user));
+
+    localStorage.setItem('user', encryptUser);
+  }
+
+  private encryptData(data: string): string {
+    return CryptoJS.AES.encrypt(data, Constant.EN_KEY).toString();
+  }
+  private decryptData(encryptedData: string): string | null {
+    const decryptValue = CryptoJS.AES.decrypt(encryptedData, Constant.EN_KEY);
+    return decryptValue.toString(CryptoJS.enc.Utf8);
   }
 }
