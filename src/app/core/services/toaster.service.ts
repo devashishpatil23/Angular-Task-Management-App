@@ -12,7 +12,6 @@ export class ToasterService {
     this.toaster.success(message);
   }
   showError(error: HttpErrorResponse) {
-    console.log(error);
     if (error?.error?.error === 'Permission denied') {
       this.toaster.error('You do not have permission!');
       return;

@@ -18,7 +18,6 @@ export class AuthService {
 
   signUp(userCred: any): Observable<AuthResponse> {
     const data = { ...userCred, returnSecureToken: true };
-    console.log(data);
     return this.http
       .post<AuthResponse>(
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKEY}`,
@@ -32,7 +31,6 @@ export class AuthService {
   }
   login(userCred: any): Observable<AuthResponse> {
     const data = { ...userCred, returnSecureToken: true };
-    console.log(data);
     return this.http
       .post<AuthResponse>(
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKEY}`,
