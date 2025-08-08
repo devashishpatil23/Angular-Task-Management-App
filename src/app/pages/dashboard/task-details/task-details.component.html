@@ -1,48 +1,48 @@
 <div class="d-block modal modal-lg" tabindex="-1" role="dialog">
-    <div class="row justify-content-center">
-      <div class="modal-dialog mt-5 pt-5 col-10" role="document">
-        <div class="modal-content p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">{{ task?.title }}</h2>
-            <a
-              (click)="onCloseTaskDetials()"
-              class="btn-close"
-              aria-label="Close"
-            ></a>
+  <div class="row justify-content-center">
+    <div class="modal-dialog mt-5 pt-5 col-10" role="document">
+      <div class="modal-content p-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="mb-0">{{ task?.title }}</h2>
+          <a
+            (click)="onCloseTaskDetials()"
+            class="btn-close"
+            aria-label="Close"
+          ></a>
+        </div>
+        <hr />
+
+        <div class="mb-3">
+          <h6>Description:</h6>
+          <p class="text-dark">
+            {{ task?.description }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <strong class="text-secondary">Assigned To: </strong>
+            <span class="text-dark">{{ task?.assignedTo }}</span>
           </div>
-          <hr />
-  
-          <div class="mb-3">
-            <h6>Description:</h6>
-            <p class="text-muted">
-              {{ task?.description }}
-            </p>
+          <div class="col-md-6 mb-3">
+            <strong class="text-secondary">Created By: </strong>
+            <span class="text-dark">{{ task?.createdBy }}</span>
           </div>
-  
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <strong>Assigned To: </strong>
-              <span class="text-muted">{{ task?.assignedTo }}</span>
-            </div>
-            <div class="col-md-6 mb-3">
-              <strong>Created By: </strong>
-              <span class="text-muted">{{ task?.createdBy }}</span>
-            </div>
-  
-            <div class="col-md-6 mb-3">
-              <strong>Priority: </strong>
-              <strong class="text-dark">{{ task?.priority }}</strong>
-            </div>
-            <div class="col-md-6 mb-3">
-              <strong>Current Status: </strong>
-              <strong class="text-dark">{{ task?.status }}</strong>
-            </div>
-            <div class="col-md-6 mb-3">
-              <strong>Created At: </strong>
-              <span class="text-muted">{{ task?.createdAt }}</span>
-            </div>
+
+          <div class="col-md-6 mb-3">
+            <strong class="text-secondary">Priority: </strong>
+            <span class="text-dark">{{ task?.priority }}</span>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong class="text-secondary">Current Status: </strong>
+            <span class="text-dark">{{ task?.status }}</span>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong class="text-secondary">Created At: </strong>
+            <span class="text-dark">{{ task?.createdAt }}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

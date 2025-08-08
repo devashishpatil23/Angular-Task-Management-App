@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { TaskService } from '../../../core/services/task.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 
@@ -10,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../../../shared/components/filter/filter.component';
 import { TaskFilters } from '../../../model/TaskFilters';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TaskCardComponent } from '../../../shared/components/task-card/task-card.component';
 
 @Component({
   selector: 'app-tasks',
@@ -19,6 +27,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     LoaderComponent,
     CommonModule,
     FilterComponent,
+    TaskCardComponent,
   ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss',
@@ -49,6 +58,7 @@ export class TasksComponent implements OnInit {
           this.allTasks.set(tasks);
           this.filteredTasks.set(tasks);
           this.isLoading.set(false);
+          console.log(this.allTasks());
         },
         error: (error) => {
           this.errorMessage.set(error.message);
@@ -86,7 +96,7 @@ export class TasksComponent implements OnInit {
     this.editTask.set(task);
   }
 
-  onDelteTask(id: string | undefined) {
+  onDeleteTask(id: string | undefined) {
     if (!id) return;
     const confirmDelete = confirm('Are you sure you want to delete the task?');
     if (confirmDelete) {
@@ -143,5 +153,4 @@ export class TasksComponent implements OnInit {
   onCreateTask() {
     this.showForm.set(true);
   }
-
 }

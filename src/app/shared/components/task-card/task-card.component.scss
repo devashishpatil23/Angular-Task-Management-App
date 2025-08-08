@@ -1,0 +1,37 @@
+/* Card styling */
+.task-card {
+  width: 18rem;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges for priority & status */
+.priority-badge,
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.35em 0.6em;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+
+.priority-badge-low {
+  color: #000;
+  background-color: rgba(228, 228, 110, 0.962);
+}
+.priority-badge-medium {
+  color: #000;
+  background-color: rgba(138, 206, 240, 0.826);
+}
+.priority-badge-high {
+  color: #000;
+  background-color: rgba(156, 224, 114, 0.896);
+}
+.priority-badge-critical {
+  color: #000;
+  background-color: #e4544fdc;
+}

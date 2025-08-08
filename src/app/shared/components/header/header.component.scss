@@ -1,3 +1,49 @@
-a {
-  cursor: default;
+.spacer {
+  flex: 1 1 auto;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .mobile-sidenav-container {
+    height: 100%;
+  }
+
+  .mobile-sidenav {
+    width: 240px;
+  }
+}
+
+.app-title {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-email {
+  margin-left: 10px;
+  font-size: 0.85rem;
+}
+
+.bg-light {
+  background: #b5d5f9 !important;
+}
+
+li {
+  cursor: pointer;
 }

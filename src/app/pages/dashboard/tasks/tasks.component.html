@@ -11,15 +11,15 @@
   *ngIf="showDetailsView()"
 ></app-task-details>
 <div
-  class="d-flex flex-column flex-lg-row shadow-sm px-3 py-2 justify-content-between align-items-center my-3"
+  class="d-flex flex-column flex-lg-row px-3 py-2 justify-content-between align-items-center my-3"
 >
-  <h3>Dashboard</h3>
-  <div>
+  <h3>Tasks</h3>
+  <div class="d-flex">
     <button class="btn btn-primary m-1" (click)="onCreateTask()">
-      Create Task
+      Create task
     </button>
     <button (click)="clearAllTasks()" class="btn btn-danger m-1">
-      Clear All Tasks
+      Clear all tasks
     </button>
   </div>
 </div>
@@ -36,62 +36,69 @@
     <h3 class="text-muted ps-lg-5">No task found!</h3>
   </div>
 
-  <div
-    class="d-flex flex-wrap shadow-sm justify-content-center justify-content-center justify-content-lg-start"
-  >
+  <div class="d-flex flex-wrap justify-content-center justify-content-center">
     @for (task of filteredTasks(); track $index) {
-    <div
-      class="card mx-3 my-4 shadow-sm"
+    <app-task-card
+      [task]="task"
+      (deleteTask)="onDeleteTask($event)"
+      (showTaskDetails)="showTaskDetails($event)"
+      (editTask)="onEditTask($event)"
+    >
+      ></app-task-card
+    >
+    <!-- <div
+      class="card task-card mx-3 my-4 shadow-sm"
       [ngClass]="'border-' + task.priority"
-      style="width: 18rem; border-radius: 12px"
     >
       <div class="card-body p-4">
         <div class="task-title border-bottom mb-3 pb-2">
-          <h4 class="mb-0 text-primary">{{ task.title }}</h4>
+          <h4 class="mb-0 fw-bold">{{ task.title }}</h4>
         </div>
-        <p class="mb-2 fw-semibold">
+
+        <p class="mb-2">
           <span class="fw-semibold text-secondary">Created by:</span>
           <span class="text-dark"> {{ task.createdBy }} </span>
         </p>
 
-        <p class="mb-2 fw-semibold">
+        <p class="mb-2">
           <span class="fw-semibold text-secondary">Assigned to:</span>
           <span class="text-dark"> {{ task.assignedTo }} </span>
         </p>
-        <p class="mb-2 fw-semibold">
-          <span class="text-secondary me-2">Priority:</span>
-          <span class="text-dark">{{ task.priority }}</span>
+
+        <p class="mb-2">
+          <span class="fw-semibold text-secondary me-2">Priority:</span>
+          <span class="badge" [ngClass]="'priority-badge-' + task.priority">{{
+            task.priority
+          }}</span>
         </p>
-        <p class="mb-3 fw-semibold">
+
+        <p class="mb-3">
           <span class="fw-semibold text-secondary me-2">Status:</span>
-          <span class="text-dark">{{ task.status }}</span>
+          <span class="fw-semibold">{{ task.status }}</span>
         </p>
 
         <div class="d-flex justify-content-end gap-2 mt-3">
           <button
             (click)="showTaskDetails(task)"
-            class="btn btn-primary btn-sm border"
+            class="btn text-primary"
             title="Detail"
           >
-            <i class="bi bi-info-circle text-white"></i>
+            <i class="bi bi-info-circle"></i>
           </button>
-          <button
-            (click)="onEditTask(task)"
-            class="btn btn-success btn-sm border"
-            title="Edit"
-          >
-            <i class="bi bi-pencil-square text-white"></i>
+          <button (click)="onEditTask(task)" class="btn btn-sm" title="Edit">
+            <i class="bi bi-pencil-square"></i>
           </button>
           <button
             (click)="onDelteTask(task.id)"
-            class="btn btn-danger btn-sm border"
+            class="btn text-danger"
             title="Delete"
           >
-            <i class="bi bi-trash text-white"></i>
+            <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
+
     }
   </div>
 </div>

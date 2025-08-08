@@ -1,0 +1,52 @@
+<div
+  class="card task-card mx-3 my-4 shadow-sm"
+  [ngClass]="'border-' + task.priority"
+>
+  <div class="card-body p-4">
+    <div class="task-title border-bottom mb-3 pb-2">
+      <h4 class="mb-0 fw-bold">{{ task.title }}</h4>
+    </div>
+
+    <p class="mb-2">
+      <span class="fw-semibold text-secondary">Created by:</span>
+      <span class="text-dark"> {{ task.createdBy }} </span>
+    </p>
+
+    <p class="mb-2">
+      <span class="fw-semibold text-secondary">Assigned to:</span>
+      <span class="text-dark"> {{ task.assignedTo }} </span>
+    </p>
+
+    <p class="mb-2">
+      <span class="fw-semibold text-secondary me-2">Priority:</span>
+      <span class="badge" [ngClass]="'priority-badge-' + task.priority">{{
+        task.priority
+      }}</span>
+    </p>
+
+    <p class="mb-3">
+      <span class="fw-semibold text-secondary me-2">Status:</span>
+      <span class="fw-semibold">{{ task.status }}</span>
+    </p>
+
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button
+        (click)="onShowTaskDetails(task)"
+        class="btn text-primary"
+        title="Detail"
+      >
+        <i class="bi bi-info-circle"></i>
+      </button>
+      <button (click)="onEditTask(task)" class="btn btn-sm" title="Edit">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+      <button
+        (click)="onDeleteTask(task.id)"
+        class="btn text-danger"
+        title="Delete"
+      >
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -14,3 +14,22 @@
 .btn-close {
   cursor: pointer;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #e0e8f3 !important;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(64, 102, 159) !important;
+}

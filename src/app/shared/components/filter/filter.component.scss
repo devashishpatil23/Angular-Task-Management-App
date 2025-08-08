@@ -1,0 +1,23 @@
+.filter-card {
+  margin-bottom: 16px;
+  padding: 12px;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
